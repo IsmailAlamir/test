@@ -31,16 +31,18 @@ env = environ.Env(
 
 environ.Env.read_env()
 
+
+
 ENVIRONMENT = env.str("ENVIRONMENT")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str("SECRET_KEY")
+SECRET_KEY = "django-insecure-qg!**j36dr(qb$d*@id9@yb$#n_l5=dx(#gux%wmu-oz3v72h%"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG")
+DEBUG = True
 
 # ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
 ALLOWED_HOSTS = ["*"]
@@ -58,7 +60,7 @@ INSTALLED_APPS = [
     #3rd
     'rest_framework',
     'rest_framework_simplejwt',
-
+    'corsheaders',
     #local
     'accounts',
 ]
@@ -101,12 +103,12 @@ WSGI_APPLICATION = "project.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": env.str("DATABASE_ENGINE"),
-        "NAME": env.str("DATABASE_NAME"),
-        "USER": env.str("DATABASE_USER"),
-        "PASSWORD": env.str("DATABASE_PASSWORD"),
-        "HOST": env.str("DATABASE_HOST"),
-        "PORT": env.int("DATABASE_PORT"),
+        "ENGINE": 'django.db.backends.postgresql',
+        "NAME": 'bsfvznqf',
+        "USER": 'bsfvznqf',
+        "PASSWORD": '8PZ8m_5wb1TPO8_MxTcwc_q38ed5omSv',
+        "HOST": 'ruby.db.elephantsql.com',
+        "PORT": '',
     }
 }
 
@@ -175,10 +177,4 @@ SIMPLE_JWT = {
     ),  # lasts for 60 minutes
 }
 
-CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
-CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
-CSRF_TRUSTED_ORIGINS = tuple(env.list("ALLOWED_ORIGINS"))
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-]
-
+CORS_ORIGIN_ALLOW_ALL = True  
