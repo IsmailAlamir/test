@@ -2,10 +2,10 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view,permission_classes
 
-from accounts.api.serializers import RegistrationSerializer,ChangePasswordSerializer,UpdateUserSerializer,UserSerializer
+from accounts.api.serializers import RegistrationSerializer,UserSerializer
 from rest_framework.permissions import AllowAny,IsAuthenticated
 
-from rest_framework.generics import UpdateAPIView,RetrieveAPIView
+from rest_framework.generics import UpdateAPIView
 from accounts.models import CustomUser
 
 from django.shortcuts import get_object_or_404
@@ -34,22 +34,7 @@ def registration_view(request):
             data = serializer.errors
         return Response(data)
 
-# for update the password
 
-class ChangePasswordView(UpdateAPIView):
-
-    queryset = CustomUser.objects.all()
-    permission_classes = (IsAuthenticated,)
-    serializer_class = ChangePasswordSerializer
-
-
-#for update the user information
-class UpdateProfileView(UpdateAPIView):
-
-
-    queryset = CustomUser.objects.all()
-    permission_classes = (IsAuthenticated,)
-    serializer_class = UpdateUserSerializer
 
 
 #get user information
