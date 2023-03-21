@@ -42,8 +42,8 @@ SECRET_KEY = env.str("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG")
 
-ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
-
+# ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
