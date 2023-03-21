@@ -9,8 +9,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
-import os
 import environ
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,7 +42,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG")
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
 
 
 # Application definition
@@ -146,15 +146,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-STATICFILES = [
-    os.path.join(BASE_DIR,"static")
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+STATICFILES_DIRS = os.path.join(BASE_DIR/'static')
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build', 'static')
+
 
 AUTH_USER_MODEL='accounts.CustomUser'
 
@@ -182,3 +182,4 @@ CSRF_TRUSTED_ORIGINS = tuple(env.list("ALLOWED_ORIGINS"))
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
+
